@@ -17,6 +17,7 @@ public class Cards {
 		/*this.cards = cards;*/
 		createCardArray(cards);
 		dealCards();
+		findWinner();
 		
 	}
 
@@ -59,6 +60,34 @@ public class Cards {
 		System.out.println(Arrays.asList(cardsToDeal));
 		playerTwo = new Hand(cardsToDeal);
 		
+	}
+
+	public void findWinner(){
+		int playerOneRank = playerOne.getHandRankValue();
+		int playerTwoRank = playerTwo.getHandRankValue();
+
+		int playerOneHighCard = playerOne.getHighestCardValue();
+		int playerTwoHighCard = playerTwo.getHighestCardValue();
+
+		if (playerOneRank == playerTwoRank){
+			if(playerOneHighCard > playerTwoHighCard){
+				System.out.println("Player One Wins");
+			}
+			else{
+				System.out.println("Player Two Wins");	
+			}
+		}
+
+		else if ( playerOneRank > playerTwoRank){
+			System.out.println("Player One Wins");
+		}
+
+		else{
+			System.out.println("Player Two Wins");
+		}
+
+
+
 	}
 	
 	
