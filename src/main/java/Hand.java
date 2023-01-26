@@ -1,24 +1,9 @@
+package main.java;
 import java.util.*;
 
-public class Hand{
+public class Hand extends Cards {
 	
-	private static int arrayLength = 5;
-	private static final Map<String, Integer> cardsAndValues = new HashMap<String, Integer>() {{
-		put("A", 14);
-		put("K", 13);
-		put("Q", 12);
-		put("J", 11 );
-		put("T", 10);
-		put("9", 9);
-		put("8", 8);
-		put("7", 7);
-		put("6", 6);
-		put("5", 5);
-		put("4", 4);
-		put("3", 3 );
-		put("2", 2);
-	}};
-
+	/*private static int arrayLength = 5;*/
 	private static final Map<String, Integer> handRank = new HashMap<String, Integer> (){{
 		put("Royal Flush", 10);
 		put("Straight Flush", 9);
@@ -32,8 +17,6 @@ public class Hand{
 		put("High Card", 1);
 	}};
 
-	private Integer[] cardValues = new Integer[arrayLength];
-	private String[] cardSuits = new String [arrayLength];
 	private HashMap<Integer, Integer> cardMap = new HashMap<>();
 	private TreeSet<Integer> cardValueSet ;
 	private TreeSet<String> cardSuitsSet ;
@@ -43,21 +26,10 @@ public class Hand{
 	
 	
 	public Hand(String[] cards) {
-		setCardValuesAndSuits(cards);
+		super(cards);
+		setCardMap();
 		setCardValuesAndSuitsSet();
 		currentHand();
-	}
-	
-	public int getCardValue(String cardNumber) {
-		Integer value = cardsAndValues.get(cardNumber);
-		
-		if (value == null) {
-			return -1;
-		}
-		else {
-			return value;
-		
-		}
 	}
 
 	public int getHighestCardValue(){
@@ -67,31 +39,20 @@ public class Hand{
 	public int getHandRankValue(){
 		return handRankValue;
 	}
-	
-	public void setCardValuesAndSuits(String[] cards) {
-		for (int i = 0; i < arrayLength; i++) {
-			String[] splitCard = cards[i].split("(?=\\D)");
-			
-			cardValues[i] = cardsAndValues.get(splitCard[0]);
-			cardSuits[i] = splitCard[1];
 
-			setCardMap(cardValues[i]);
+	public void setCardMap(){
+		ArrayList<Integer> cardValues = getValuesArray();
+		
+		for (Integer value : cardValues){
+			Integer initialValue = cardMap.get(value);
 
-		}	
+			if (initialValue == null){
+				cardMap.put(value, 1);
+			}
+			else{
+				cardMap.put(value, initialValue+1);
+			}
 
-		/*for (Map.Entry<Integer,Integer> entry : cardMap.entrySet()){
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-    	}*/
-	}
-
-	public void setCardMap(Integer i){
-		Integer initialValue = cardMap.get(i);
-
-		if (initialValue == null){
-			cardMap.put(i, 1);
-		}
-		else{
-			cardMap.put(i , initialValue+1);
 		}
 
 	}
@@ -109,8 +70,8 @@ public class Hand{
 	}
 
 	public void setCardValuesAndSuitsSet(){
-		cardValueSet = new TreeSet<>(Arrays.asList(cardValues));
-		cardSuitsSet = new TreeSet<>(Arrays.asList(cardSuits));
+		cardValueSet = new TreeSet<>(getValuesArray());
+		cardSuitsSet = new TreeSet<>(getSuitsArray());
 
 		System.out.println(cardValueSet);
 		System.out.println(cardSuitsSet);
@@ -142,6 +103,7 @@ public class Hand{
 		return false;
 
 	}
+	
 	public void isHighCard() {
 		setHighestCardValue(1);
 		setHandRank("High Card");
