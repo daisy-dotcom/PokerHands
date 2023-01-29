@@ -1,9 +1,8 @@
-package main.java;
+package project;
 import java.util.*;
 
 public class Hand extends Cards {
-	
-	/*private static int arrayLength = 5;*/
+
 	private static final Map<String, Integer> handRank = new HashMap<String, Integer> (){{
 		put("Royal Flush", 10);
 		put("Straight Flush", 9);
@@ -12,7 +11,7 @@ public class Hand extends Cards {
 		put("Flush", 6);
 		put("Straight", 5);
 		put("Three of a Kind", 4);
-		put("Two Pair Flush", 3);
+		put("Two Pair", 3);
 		put("One Pair", 2);
 		put("High Card", 1);
 	}};
@@ -23,12 +22,18 @@ public class Hand extends Cards {
 	private int highestCardValue;
 	private int handRankValue;
 
-	
-	
+	/* Comparison Variables */
+	private Integer firstCard;
+	private Integer lastCard;
+	private Integer cardValueDifference;
+	private Integer numberOfSuits;
+	private Integer sizeCardValueSet;
+
 	public Hand(String[] cards) {
 		super(cards);
 		setCardMap();
 		setCardValuesAndSuitsSet();
+		setComparisonVariables();
 		currentHand();
 	}
 
@@ -73,30 +78,29 @@ public class Hand extends Cards {
 		cardValueSet = new TreeSet<>(getValuesArray());
 		cardSuitsSet = new TreeSet<>(getSuitsArray());
 
-		System.out.println(cardValueSet);
-		System.out.println(cardSuitsSet);
-		/*for (Integer i : cardValueSet){
-			System.out.println("card value set");
-			System.out.println(i);
-		}
-
-		for (String i : cardSuitsSet){
-			System.out.println("card suit set");
-			System.out.println(i);
-		}*/
+		/*System.out.println(cardValueSet);
+		System.out.println(cardSuitsSet);*/
 	}
 	
 	public void setHandRank(String handName){
 		handRankValue = handRank.get(handName);
 
 	}
+
+	public void setComparisonVariables(){
+		firstCard = cardValueSet.first();
+		lastCard = cardValueSet.last();
+		cardValueDifference = lastCard - firstCard;
+		numberOfSuits = cardSuitsSet.size();
+		sizeCardValueSet = cardValueSet.size();
+		
+	}
 	
-	public boolean hasThreeOccurences(){
+	public boolean hasNumOccurences(int num){
 
 		for (Integer cardValue : cardValueSet){
 			int numOfOccurences = cardMap.get(cardValue);
-			/*System.out.println("Current card value: " + cardValue);*/
-			if ( numOfOccurences == 3){
+			if ( numOfOccurences == num){
 				return true;
 			}
 		}
@@ -110,7 +114,6 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isOnePair() {
-		Integer sizeCardValueSet = cardValueSet.size();
 
 		if ( sizeCardValueSet == 4){
 			setHighestCardValue(2);
@@ -125,7 +128,6 @@ public class Hand extends Cards {
 	
 	
 	public boolean isTwoPair() {
-		Integer sizeCardValueSet = cardValueSet.size();
 
 		if ( sizeCardValueSet == 3){
 			setHighestCardValue(2);
@@ -139,10 +141,8 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isThreeOfAKind() {
-		Integer numberOfSuits = cardSuitsSet.size();
-		Integer sizeCardValueSet = cardValueSet.size();
 
-		if ( sizeCardValueSet == 3 && numberOfSuits >= 3 && hasThreeOccurences()){
+		if ( sizeCardValueSet == 3 && numberOfSuits >= 3 && hasNumOccurences(3)){
 			setHighestCardValue(3);
 			setHandRank("Three of a Kind");
 			return true;
@@ -154,11 +154,6 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isStraight() {
-		Integer firstCard = cardValueSet.first();
-		Integer lastCard = cardValueSet.last();
-		Integer cardValueDifference = lastCard - firstCard;
-		Integer numberOfSuits = cardSuitsSet.size();
-		Integer sizeCardValueSet = cardValueSet.size();
 
 		if ( sizeCardValueSet == 5 && cardValueDifference ==  sizeCardValueSet-1 && numberOfSuits > 1){
 			setHighestCardValue(1);
@@ -173,7 +168,6 @@ public class Hand extends Cards {
 	
 	
 	public boolean isFlush() {
-		Integer numberOfSuits = cardSuitsSet.size();
 
 		if (numberOfSuits == 1){
 			setHighestCardValue(1);
@@ -187,7 +181,6 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isFullHouse() {
-		Integer sizeCardValueSet = cardValueSet.size();
 
 		if ( sizeCardValueSet == 2 ){
 			setHighestCardValue(3);
@@ -201,10 +194,8 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isFourOfAKind() {
-		Integer numberOfSuits = cardSuitsSet.size();
-		Integer sizeCardValueSet = cardValueSet.size();
 
-		if ( sizeCardValueSet == 2 && numberOfSuits == 4){
+		if ( sizeCardValueSet == 2 && numberOfSuits == 4 && hasNumOccurences(4)){
 			setHighestCardValue(4);
 			setHandRank("Four of a Kind");
 			return true;
@@ -216,11 +207,6 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isStraightFlush() {
-		Integer firstCard = cardValueSet.first();
-		Integer lastCard = cardValueSet.last();
-		Integer cardValueDifference = lastCard - firstCard;
-		Integer numberOfSuits = cardSuitsSet.size();
-		Integer sizeCardValueSet = cardValueSet.size();
 
 		if ( sizeCardValueSet == 5 && cardValueDifference ==  sizeCardValueSet -1 && numberOfSuits == 1){
 			setHighestCardValue(1);
@@ -234,10 +220,7 @@ public class Hand extends Cards {
 	}
 	
 	public boolean isRoyalFlush() {
-
-		Integer firstCard = cardValueSet.first();
-		Integer numberOfSuits = cardSuitsSet.size();
-
+		
 		if ( firstCard == 10 && numberOfSuits == 1){
 			setHighestCardValue(1);
 			setHandRank("Royal Flush");
