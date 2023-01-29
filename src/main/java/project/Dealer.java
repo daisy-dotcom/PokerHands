@@ -11,6 +11,7 @@ public class Dealer {
     private Hand playerOne;
 	private Hand playerTwo;
 	private String cards;
+	private String winner;
 
     public Dealer(){
         getCards();
@@ -18,6 +19,13 @@ public class Dealer {
         dealCards();
         findWinner();
     }
+
+	public Dealer(String cards){
+		this.cards = cards;
+		createCardArray();
+		dealCards();
+		findWinner();
+	}
 
     public void getCards(){
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -60,6 +68,14 @@ public class Dealer {
 		
 	}
 
+	public void setWinner(String winner){
+		this.winner = winner;
+	}
+
+	public String getWinner(){
+		return winner;
+	}
+
     public void findWinner(){
 		int playerOneRank = playerOne.getHandRankValue();
 		int playerTwoRank = playerTwo.getHandRankValue();
@@ -69,18 +85,22 @@ public class Dealer {
 
 		if (playerOneRank == playerTwoRank){
 			if(playerOneHighCard > playerTwoHighCard){
+				setWinner("Player One Wins");
 				System.out.println("Player One Wins");
 			}
 			else{
-				System.out.println("Player Two Wins");	
+				setWinner("Player Two Wins");	
+				System.out.println("Player Two Wins");
 			}
 		}
 
-		else if ( playerOneRank > playerTwoRank){
+		else if (playerOneRank > playerTwoRank){
+			setWinner("Player One Wins");
 			System.out.println("Player One Wins");
 		}
 
 		else{
+			setWinner("Player Two Wins");
 			System.out.println("Player Two Wins");
 		}
 
