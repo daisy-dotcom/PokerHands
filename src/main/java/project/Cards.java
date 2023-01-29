@@ -20,19 +20,8 @@ public class Cards {
 	}};
 	protected ArrayList<Integer> cardValues = new ArrayList<Integer>();
 	protected ArrayList<String> cardSuits = new ArrayList<String>();
-
-	/*private static int arrayLength = 5;
-	*private Hand playerOne;
-	private Hand playerTwo;
-	private String cards;
-	private String[] cardArray = new String[10];*/
 	
 	public Cards(String[] cards) {
-		/*getCards();*/
-		/*this.cards = cards;
-		createCardArray(cards);
-		dealCards();
-		findWinner();*/
 		setValuesAndSuits(cards);	
 	}
 
@@ -65,12 +54,9 @@ public class Cards {
 			/*setCardMap(cardValues[i]);*/
 		}	
 
-		System.out.println(cardValues);
-		System.out.println(cardSuits);
+		/*System.out.println(cardValues);
+		System.out.println(cardSuits);*/
 
-		/*for (Map.Entry<Integer,Integer> entry : cardMap.entrySet()){
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-    	}*/
 	}
 	
 }

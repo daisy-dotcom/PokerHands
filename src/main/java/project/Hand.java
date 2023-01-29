@@ -234,38 +234,38 @@ public class Hand extends Cards {
 
 	public void currentHand(){
 		if (isRoyalFlush()){
-			System.out.println("Royal Flush");
+			/*System.out.println("Royal Flush");*/
 		}
 		else if (isStraightFlush()){
-			System.out.println("Straight Flush");
+			/*System.out.println("Straight Flush");*/
 		}
 		else if (isFourOfAKind()){
-			System.out.println("Four of a Kind");
+			/*System.out.println("Four of a Kind");*/
 		}
 		else if (isFullHouse()){
-			System.out.println("Full House");
+			/*System.out.println("Full House");*/
 		}
 		else if (isFlush()){
-			System.out.println("Flush");
+			/*System.out.println("Flush");*/
 		}
 		else if (isStraight()){
-			System.out.println("Straight");
+			/*System.out.println("Straight");*/
 		}
 		else if (isThreeOfAKind()){
-			System.out.println("Three of A Kind");
+			/*System.out.println("Three of A Kind");*/
 		}
 		else if (isTwoPair()){
-			System.out.println("Two Pair");
+			/*System.out.println("Two Pair");*/
 		}
 		else if (isOnePair()){
-			System.out.println("One Pair");
+			/*System.out.println("One Pair");*/
 		}
 		else{
 			isHighCard();
-			System.out.println("High Card");
+			/*System.out.println("High Card");*/
 		}
 
-		System.out.println(highestCardValue);
+		/*System.out.println(highestCardValue);*/
 	}
 	
 		
