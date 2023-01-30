@@ -63,6 +63,12 @@ public class DealerTest {
         assertEquals("Player One Wins", dealer.getWinner());
     }
 
+    @Test
+    void testSameHandDifferentHighCard(){
+        Dealer dealer = new Dealer("2H 2D 4C 4D 4S 3C 3D 3S 9S 9D");
+        assertEquals("Player One Wins", dealer.getWinner()); 
+    }
+
 
     
 
