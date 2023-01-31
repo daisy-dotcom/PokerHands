@@ -22,14 +22,14 @@
 ## About The Project
 
 This project provides a solution for problem 54 on projecteuler.net 
-which can be found here https://projecteuler.net/problem=54
+which can be found here https://projecteuler.net/problem=54.
 The problem describes a poker game where 2 players are dealt 5 cards 
 each and the player with the best hand according to the rules of poker
 wins. 
 
 The hand ranking sytem can be found here. https://en.wikipedia.org/wiki/List_of_poker_hands
 
-The goal is to determine the number of times player on wins.
+The goal is to determine the number of times player one wins.
 
 
 ### Built With
@@ -89,7 +89,6 @@ see the number of times player one wins.
    ```sh
    docker pull daisyd0tc0m/poker-hands-tests
    ```
-
 4. Start a container to output the test results.
    ```sh
    docker run --it --rm daisyd0tc0m/poker-hands-tests
@@ -101,17 +100,17 @@ see the number of times player one wins.
 ### How It Works
 
 The solution works by determining the current hand of each player. This
-is done by a process of elimination staring from the most specific and highest value hand (a Royal Flush) to the least specific and lowest value one (High Card). 
+is done by a process of elimination starting from the most specific and highest value hand (a Royal Flush) to the least specific and lowest value one (High Card). 
 
-The first step in finding a winner is comparing the value of player 1's hand and player 2's hand. The hand or greater value wins.
+The first step in finding a winner is comparing the value of player 1's hand and player 2's hand. The hand of greater value wins.
 
-When the type of hand is determined, the value of the card  making up the hand is also stored in case both players have the same hand in order to find a winner.
+When the type of hand is determined, the value of the highest value card making up the hand is also stored in case both players have the same hand in order to find a winner.
 
 An example would be:
 Player 1 : 5H 5C 6S 7S KD
 Player 2 : 2C 3S 8S 8D TD
 
-Here player 1 has a pair of 5s and player 2 has a pair of 8s. Since 8 is greater than 5, player 2 would win.
+Here, player 1 has a pair of 5s and player 2 has a pair of 8s. Since 8 is greater than 5, player 2 would win.
 
 ### Object Oriented Programming Features
 
