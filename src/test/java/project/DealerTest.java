@@ -1,9 +1,14 @@
 package project;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the Dealer class by 
+ * checking that the hand of greater value
+ * wins.
+ * 
+ * @author Daisy Oira
+ */
 public class DealerTest {
     @Test
     void testHighCardAgainstOnePair() {

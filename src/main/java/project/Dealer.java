@@ -1,10 +1,14 @@
 package project;
 import java.io.BufferedReader;
 import java.io.FileReader;
-/*import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;*/
 
+/**
+ * This class deals cards to two players,
+ * determimes a winner and calculates the
+ * number of times player one wins.
+ * 
+ * @author
+ */
 public class Dealer {
 
     private static final int handSize = 5;
@@ -17,9 +21,6 @@ public class Dealer {
 
     public Dealer(){
         getCards();
-        /*createCardArray();
-        dealCards();
-        findWinner();*/
     }
 
 	public Dealer(String cards){
@@ -30,10 +31,6 @@ public class Dealer {
 	}
 
     public void getCards(){
-		/*BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		String cards = "";
-		System.getProperty("user.dir") + */
-
 		try {
 			FileReader file = new FileReader("./src/main/java/project/public/p054_poker.txt");
 			BufferedReader buffer = new BufferedReader(file);
@@ -56,22 +53,10 @@ public class Dealer {
 			ex.printStackTrace();
 		}
 
-		/*try {
-			inputLine = input.readLine();
-			this.cards = inputLine;
-			System.out.println(inputLine);
-		} 
-		catch (IOException e) {
-			System.out.print("Input Error!");
-			e.printStackTrace();
-		}*/
-
 	}
 
     public void createCardArray() {
 		this.cardArray = cards.split(" ");	
-		/*System.out.println(Arrays.asList(cardArray));*/
-
 	}
 
     public void dealCards() {
@@ -80,15 +65,13 @@ public class Dealer {
 		for (int i = 0; i < handSize; i++) {
 			cardsToDeal[i] = cardArray[i];	
 		}
-		/*System.out.println(Arrays.asList(cardsToDeal));*/
 		
 		playerOne = new Hand(cardsToDeal);
 		
 		for (int i = 5; i < (handSize*2); i++) {
 			cardsToDeal[i-handSize] = cardArray[i];
 		}
-		
-		/*System.out.println(Arrays.asList(cardsToDeal));*/
+
 		playerTwo = new Hand(cardsToDeal);
 		
 	}
@@ -116,11 +99,9 @@ public class Dealer {
 			if(playerOneHighCard > playerTwoHighCard){
 				setWinner("Player One Wins");
 				playerOneWins++;
-				/*System.out.println("Player One Wins");*/
 			}
 			else{
 				setWinner("Player Two Wins");	
-				/*System.out.println("Player Two Wins");*/
 			}
 		}
 

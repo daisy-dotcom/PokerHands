@@ -1,6 +1,13 @@
 package project;
 import java.util.*;
 
+/**
+ * This class determines the rank of dealt 
+ * hand and the highest value card in the
+ * hand.
+ * 
+ * @author Daisy Oira 
+ */
 public class Hand extends Cards {
 
 	private static final Map<String, Integer> handRank = new HashMap<String, Integer> (){{
@@ -77,9 +84,6 @@ public class Hand extends Cards {
 	public void setCardValuesAndSuitsSet(){
 		cardValueSet = new TreeSet<>(getValuesArray());
 		cardSuitsSet = new TreeSet<>(getSuitsArray());
-
-		/*System.out.println(cardValueSet);
-		System.out.println(cardSuitsSet);*/
 	}
 	
 	public void setHandRank(String handName){

@@ -3,9 +3,13 @@ package project;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-
-/*import project.Hand;*/
-
+/**
+ * This class tests the Hands Class by
+ * checking that each hand is assigned
+ * the correct value.
+ * 
+ * @author Daisy Oira
+ */
 public class HandTest {
 
     @Test

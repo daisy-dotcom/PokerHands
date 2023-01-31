@@ -1,6 +1,13 @@
 package project;
 import java.util.*;
 
+/**
+ * This class stores the cards suit and
+ * values by mapping them to a corresponding 
+ * integer.
+ * 
+ * @author Daisy Oira
+ */
 public class Cards {
 	
 	private static final Map<String, Integer> suitsAndValues = new HashMap<String, Integer>() {{
@@ -15,7 +22,7 @@ public class Cards {
 		put("6", 6);
 		put("5", 5);
 		put("4", 4);
-		put("3", 3 );
+		put("3", 3);
 		put("2", 2);
 	}};
 	protected ArrayList<Integer> cardValues = new ArrayList<Integer>();
@@ -51,11 +58,7 @@ public class Cards {
 			
 			cardValues.add(getCardValue(splitCard[0]));
 			cardSuits.add(splitCard[1]);
-			/*setCardMap(cardValues[i]);*/
 		}	
-
-		/*System.out.println(cardValues);
-		System.out.println(cardSuits);*/
 
 	}
 	
