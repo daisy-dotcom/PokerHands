@@ -8,8 +8,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -46,23 +44,21 @@ The goal is to determine the number of times player on wins.
 
 ### Prerequisites
 
-* [Docker] (https://docs.docker.com/desktop/install/windows-install/)
-or
-* [Gradle] (https://gradle.org/install/)
+* Docker https://docs.docker.com/desktop/install/windows-install/  
+or  
+* Gradle https://gradle.org/install/
 
 
 ### Installation
 #### Gradle
 
-1. Clone the repo
+1. Clone the repo.
    ```sh
    git clone https://github.com/daisy-dotcom/PokerHands.git
    ```
-2. Navigate to the directory with the build.gradle file 
-   ```sh
-   git clone https://github.com/github_username/PokerHands.git
-   ```
-3. Run one of these commands to run tests
+2. Navigate to the directory with the build.gradle file.
+
+3. Run one of these commands to run tests.
    ```sh
    gradle test
    ```
@@ -71,7 +67,7 @@ or
    ./gradlew test
    ```
 4. Run one of these commands to run the application and 
-see the number of times player one wins
+see the number of times player one wins.
    ```sh
    gradle run
    ```
@@ -83,67 +79,69 @@ see the number of times player one wins
 #### Docker
 1. Pull the image from Docker Hub
    ```sh
-   docker pull [image_name]
+   docker pull daisyd0tc0m/poker-hands
    ```
 2. Start a container to output player one's wins
    ```sh
-   docker run --it --rm [image_name]
+   docker run --it --rm daisyd0tc0m/poker-hands
    ```
 3. Pull the image for the tests from Docker Hub
    ```sh
-   docker pull [image_name]
+   docker pull daisyd0tc0m/poker-hands-tests
    ```
 
 4. Start a container to output the test results.
    ```sh
-   docker run --it --rm [image_name]
+   docker run --it --rm daisyd0tc0m/poker-hands-tests
    ```
 
-<!-- ROADMAP -->
-## Project Structure
+<!-- PROJECT STRUCTURE -->
+## Project Overview
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+### How It Works
 
-See the [open issues](https://github.com/github_username/PokerHands/issues) for a full list of proposed features (and known issues).
+The solution works by determining the current hand of each player. This
+is done by a process of elimination staring from the most specific and highest value hand (a Royal Flush) to the least specific and lowest value one (High Card). 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+The first step in finding a winner is comparing the value of player 1's hand and player 2's hand. The hand or greater value wins.
 
+When the type of hand is determined, the value of the card  making up the hand is also stored in case both players have the same hand in order to find a winner.
 
+An example would be:
+Player 1 : 5H 5C 6S 7S KD
+Player 2 : 2C 3S 8S 8D TD
 
-<!-- CONTRIBUTING -->
-## Contributing
+Here player 1 has a pair of 5s and player 2 has a pair of 8s. Since 8 is greater than 5, player 2 would win.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+### Object Oriented Programming Features
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+- Inheritance
+    - The Hand class extends the Cards class since a hand is a subset of cards from a deck.
+- Encapsulation
+    - Use of getters and setters for private properties used to find out the poker hand for each player.
+    - Prevents the addition of cards to the hand, for example, which would affect the value of assigned
+    to the hand.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Improvements
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- Multithreading to improve speed.
+- One Docker image for tests and the application
 
+### New Technologies
 
+- Gradle
+    - Learned project management for Java.
+- JUnit
+    - First time writing automated tests in Java.
 
-<!-- LICENSE -->
-## License
+### Likes and Dislikes About the Solution
+ 
+ - Likes
+    - Makes use of inheritance between the Card class and Hand class that can allow us to add methods in the Card class to randomly generate poker hands instead of reading from a text file. Good for code reusability.
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+ - Dislikes
+    - A lot if-else statements when determining the hand.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- CONTACT -->
 ## Contact
@@ -152,16 +150,6 @@ Daisy Oira - daisyoira@gmail.com
 
 Project Link: [https://github.com/daisy-dotcom/PokerHands](https://github.com/daisy-dotcom/PokerHands)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 
 
