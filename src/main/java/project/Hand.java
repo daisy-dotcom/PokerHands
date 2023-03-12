@@ -36,7 +36,7 @@ public class Hand extends Cards {
 	private Integer numberOfSuits;
 	private Integer sizeCardValueSet;
 
-	public Hand(String[] cards) {
+	public Hand(ArrayList<String> cards) {
 		super(cards);
 		setCardMap();
 		setCardValuesAndSuitsSet();

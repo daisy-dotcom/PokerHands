@@ -1,5 +1,6 @@
 package project;
 import java.util.*;
+import java.util.stream.*;
 
 /**
  * This class stores the cards suit and
@@ -28,7 +29,7 @@ public class Cards {
 	protected ArrayList<Integer> cardValues = new ArrayList<Integer>();
 	protected ArrayList<String> cardSuits = new ArrayList<String>();
 	
-	public Cards(String[] cards) {
+	public Cards(ArrayList<String> cards) {
 		setValuesAndSuits(cards);	
 	}
 
@@ -52,14 +53,13 @@ public class Cards {
 		return cardSuits;
 	}
 
-	public void setValuesAndSuits(String[] cards) {
-		for (int i = 0; i < cards.length; i++) {
-			String[] splitCard = cards[i].split("(?=\\D)");
-			
-			cardValues.add(getCardValue(splitCard[0]));
-			cardSuits.add(splitCard[1]);
-		}	
-
+	public void setValuesAndSuits(ArrayList<String> cards) {
+		
+		cards.forEach(element -> {
+		cardValues.add(getCardValue(element.substring(0,1)));
+		cardSuits.add(element.substring(1,2));
+		});
+		
 	}
 	
 }

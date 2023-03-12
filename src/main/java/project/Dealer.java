@@ -1,4 +1,5 @@
 package project;
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -7,7 +8,7 @@ import java.io.FileReader;
  * determimes a winner and calculates the
  * number of times player one wins.
  * 
- * @author
+ * @author Daisy Oira
  */
 public class Dealer {
 
@@ -60,16 +61,17 @@ public class Dealer {
 	}
 
     public void dealCards() {
-		String[] cardsToDeal = new String[5] ;
+		ArrayList<String> cardsToDeal = new ArrayList<>();
 		
 		for (int i = 0; i < handSize; i++) {
-			cardsToDeal[i] = cardArray[i];	
+			cardsToDeal.add(cardArray[i]);	
 		}
 		
 		playerOne = new Hand(cardsToDeal);
+		cardsToDeal.clear();
 		
 		for (int i = 5; i < (handSize*2); i++) {
-			cardsToDeal[i-handSize] = cardArray[i];
+			cardsToDeal.add(cardArray[i]);
 		}
 
 		playerTwo = new Hand(cardsToDeal);
