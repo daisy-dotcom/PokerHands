@@ -145,7 +145,7 @@ Here, player 1 has a pair of 5s and player 2 has a pair of 8s. Since 8 is greate
 <!-- CONTACT -->
 ## Contact
 
-Daisy Oira - daisyoira@gmail.com
+Daisy Oira
 
 Project Link: [https://github.com/daisy-dotcom/PokerHands](https://github.com/daisy-dotcom/PokerHands)
 
